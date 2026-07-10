@@ -2,70 +2,68 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#090b12">
-  <meta name="description" content="GovencoOS 0.1 — локальная браузерная мини-ОС с окнами, приложениями и полной персонализацией.">
-  <meta name="color-scheme" content="dark light">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#171514">
+  <meta name="description" content="GovencoOS 0.1">
+  <link rel="icon" href="assets/govenco-icon.png">
+  <link rel="apple-touch-icon" href="assets/govenco-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>GovencoOS 0.1</title>
   <link rel="stylesheet" href="styles.css">
+  <title>GovencoOS 0.1</title>
 </head>
 <body>
-  <div id="boot" class="boot">
-    <div class="boot-orb"><span>G</span></div>
-    <h1>GovencoOS</h1><p>Local. Personal. Yours.</p>
-    <div class="boot-track"><i></i></div>
-  </div>
-
-  <main id="os" class="os is-hidden">
+  <div id="boot" class="boot"><img src="assets/govenco-icon.png" alt="GovencoOS"><span></span></div>
+  <main id="os" class="os hidden">
+    <div id="wallpaper" class="wallpaper"><i class="mountain m1"></i><i class="mountain m2"></i><i class="mountain m3"></i></div>
+    <header class="topbar">
+      <button id="brandButton" class="brand plain"><img src="assets/govenco-icon.png" alt=""><b>GovencoOS</b></button>
+      <div class="topfill"></div>
+      <button id="statusButton" class="status plain" aria-label="Quick settings">
+        <span data-icon="wifi"></span><span data-icon="volume"></span><span data-icon="battery"></span><b id="topClock">--:--</b>
+      </button>
+    </header>
     <section id="desktop" class="desktop">
-      <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
-      <div id="desktopWidgets" class="desktop-widgets"></div>
       <div id="desktopIcons" class="desktop-icons"></div>
       <div id="windowLayer" class="window-layer"></div>
 
-      <aside id="startMenu" class="start-menu glass is-hidden">
-        <header class="start-profile"><div class="avatar">G</div><div><b id="startName">Guest</b><span>Local account</span></div><button id="quickSettingsBtn" title="Quick settings">⚙</button></header>
-        <label class="search"><span>⌕</span><input id="appSearch" placeholder="Search apps and commands"></label>
-        <div class="start-label">Pinned</div><div id="startApps" class="start-apps"></div>
-        <div class="start-label">Recommended</div><div id="recommended" class="recommended"></div>
-        <footer><button id="lockBtn">Lock</button><div></div><button id="restartBtn">Restart</button><button id="shutdownBtn" class="danger">Power</button></footer>
-      </aside>
-
-      <aside id="quickPanel" class="quick-panel glass is-hidden">
-        <header><b>Quick settings</b><span id="quickTime"></span></header>
-        <div class="quick-grid">
-          <button data-toggle="wifi" class="active">◉<span>Network<small>Connected</small></span></button>
-          <button data-toggle="sound" class="active">♪<span>Sound<small>100%</small></span></button>
-          <button data-toggle="focus">◐<span>Focus<small>Off</small></span></button>
-          <button data-toggle="night">☾<span>Night light<small>Off</small></span></button>
+      <aside id="startMenu" class="start-menu glass hidden">
+        <div class="start-head"><img src="assets/govenco-icon.png" alt=""><b id="profileName">govenco</b><button id="startCollapse" class="icon-button" data-icon="chevron-down"></button></div>
+        <div class="start-content">
+          <nav id="startApps" class="start-apps"></nav>
+          <section><b class="section-label">Pinned</b><div id="pinnedApps" class="pinned"></div><b class="section-label recent-title">Recent</b><div id="recentFiles" class="recent"></div></section>
         </div>
-        <label>Brightness <input id="brightnessRange" type="range" min="55" max="115" value="100"></label>
-        <label>Volume <input id="volumeRange" type="range" min="0" max="100" value="78"></label>
+        <label class="menu-search"><span data-icon="search"></span><input id="appSearch" placeholder="Search..."></label>
+        <footer><button id="powerButton" class="menu-power"><span data-icon="power"></span>Power</button></footer>
       </aside>
 
-      <div id="contextMenu" class="context-menu glass is-hidden"></div>
-      <div id="toastArea" class="toast-area"></div>
+      <aside id="quickPanel" class="quick-panel glass hidden">
+        <div class="quick-time"><b id="quickClock">--:--</b><small id="quickDate"></small></div>
+        <div class="quick-toggles">
+          <button class="active"><span data-icon="wifi"></span><em>Network</em></button>
+          <button class="active"><span data-icon="volume"></span><em>Sound</em></button>
+          <button id="focusToggle"><span data-icon="moon"></span><em>Focus</em></button>
+          <button id="lockButton"><span data-icon="lock"></span><em>Lock</em></button>
+        </div>
+        <label class="slider-row"><span data-icon="sun"></span><input id="brightness" type="range" min="55" max="115" value="100"></label>
+      </aside>
 
-      <footer id="taskbar" class="taskbar glass">
-        <button id="startButton" class="start-button" aria-label="Start"><span>G</span></button>
-        <div id="taskbarApps" class="taskbar-apps"></div>
-        <div class="taskbar-gap"></div>
-        <button id="showDesktopBtn" class="tray-button" title="Show desktop">▯</button>
-        <button id="trayButton" class="tray"><span id="trayIcons">⌁ )))</span><span id="clock"></span></button>
+      <div id="contextMenu" class="context-menu glass hidden"></div>
+      <div id="toasts" class="toasts"></div>
+      <section id="desktopWidgets" class="desktop-widgets">
+        <article class="clock-widget glass"><div><b id="widgetClock">--:--</b><small id="widgetDate"></small></div><div class="stats"><span><i>CPU</i><b id="cpuStat">12%</b></span><span><i>RAM</i><b id="ramStat">38%</b></span><span><i>Disk</i><b id="diskStat">34%</b></span></div></article>
+      </section>
+
+      <footer class="dock glass">
+        <button id="startButton" class="dock-app logo"><img src="assets/govenco-icon.png" alt="Start"></button>
+        <div id="taskApps" class="dock-apps"></div>
       </footer>
+      <article class="version-card glass"><img src="assets/govenco-icon.png" alt=""><div><b>GovencoOS 0.1</b><small>Light. Simple. Yours.</small></div></article>
     </section>
   </main>
 
-  <div id="lockScreen" class="lock-screen is-hidden"><div class="lock-time" id="lockTime"></div><div id="lockDate"></div><button id="unlockBtn">Click to unlock</button></div>
-
-  <template id="windowTemplate">
-    <article class="window glass">
-      <header class="titlebar"><div class="app-mark"></div><div class="window-title"></div><div class="window-controls"><button data-action="min">—</button><button data-action="max">□</button><button data-action="close" class="close">×</button></div></header>
-      <div class="window-content"></div><div class="resize-handle"></div>
-    </article>
-  </template>
+  <section id="lockScreen" class="lock-screen hidden"><img src="assets/govenco-icon.png" alt=""><b id="lockClock">--:--</b><span id="lockDate"></span><button id="unlockButton">Unlock</button></section>
+  <template id="windowTemplate"><article class="window glass"><header class="titlebar"><div class="traffic"><button data-act="close" aria-label="Close"></button><button data-act="min" aria-label="Minimize"></button><button data-act="max" aria-label="Maximize"></button></div><b class="window-title"></b><div class="title-actions"></div></header><div class="window-body"></div><button class="resize" aria-label="Resize"></button></article></template>
+  <input id="systemFilePicker" type="file" multiple hidden>
   <script src="app.js"></script>
 </body>
 </html>

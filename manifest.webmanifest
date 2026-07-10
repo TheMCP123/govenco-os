@@ -1,10 +1,1 @@
-{
-  "name": "GovencoOS 0.1",
-  "short_name": "GovencoOS",
-  "description": "Local-first browser desktop environment",
-  "start_url": "/",
-  "display": "fullscreen",
-  "background_color": "#070911",
-  "theme_color": "#090b12",
-  "icons": [{"src":"favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
-}
+{"name":"GovencoOS","short_name":"GovencoOS","start_url":"./","display":"standalone","background_color":"#111111","theme_color":"#171514","icons":[{"src":"assets/govenco-icon.png","sizes":"1024x1024","type":"image/png"}]}
