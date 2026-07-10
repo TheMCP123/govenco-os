@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b12">
+  <meta name="description" content="GovencoOS 0.1 — локальная браузерная мини-ОС с окнами, приложениями и полной персонализацией.">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>GovencoOS 0.1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="boot" class="boot">
+    <div class="boot-orb"><span>G</span></div>
+    <h1>GovencoOS</h1><p>Local. Personal. Yours.</p>
+    <div class="boot-track"><i></i></div>
+  </div>
+
+  <main id="os" class="os is-hidden">
+    <section id="desktop" class="desktop">
+      <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+      <div id="desktopWidgets" class="desktop-widgets"></div>
+      <div id="desktopIcons" class="desktop-icons"></div>
+      <div id="windowLayer" class="window-layer"></div>
+
+      <aside id="startMenu" class="start-menu glass is-hidden">
+        <header class="start-profile"><div class="avatar">G</div><div><b id="startName">Guest</b><span>Local account</span></div><button id="quickSettingsBtn" title="Quick settings">⚙</button></header>
+        <label class="search"><span>⌕</span><input id="appSearch" placeholder="Search apps and commands"></label>
+        <div class="start-label">Pinned</div><div id="startApps" class="start-apps"></div>
+        <div class="start-label">Recommended</div><div id="recommended" class="recommended"></div>
+        <footer><button id="lockBtn">Lock</button><div></div><button id="restartBtn">Restart</button><button id="shutdownBtn" class="danger">Power</button></footer>
+      </aside>
+
+      <aside id="quickPanel" class="quick-panel glass is-hidden">
+        <header><b>Quick settings</b><span id="quickTime"></span></header>
+        <div class="quick-grid">
+          <button data-toggle="wifi" class="active">◉<span>Network<small>Connected</small></span></button>
+          <button data-toggle="sound" class="active">♪<span>Sound<small>100%</small></span></button>
+          <button data-toggle="focus">◐<span>Focus<small>Off</small></span></button>
+          <button data-toggle="night">☾<span>Night light<small>Off</small></span></button>
+        </div>
+        <label>Brightness <input id="brightnessRange" type="range" min="55" max="115" value="100"></label>
+        <label>Volume <input id="volumeRange" type="range" min="0" max="100" value="78"></label>
+      </aside>
+
+      <div id="contextMenu" class="context-menu glass is-hidden"></div>
+      <div id="toastArea" class="toast-area"></div>
+
+      <footer id="taskbar" class="taskbar glass">
+        <button id="startButton" class="start-button" aria-label="Start"><span>G</span></button>
+        <div id="taskbarApps" class="taskbar-apps"></div>
+        <div class="taskbar-gap"></div>
+        <button id="showDesktopBtn" class="tray-button" title="Show desktop">▯</button>
+        <button id="trayButton" class="tray"><span id="trayIcons">⌁ )))</span><span id="clock"></span></button>
+      </footer>
+    </section>
+  </main>
+
+  <div id="lockScreen" class="lock-screen is-hidden"><div class="lock-time" id="lockTime"></div><div id="lockDate"></div><button id="unlockBtn">Click to unlock</button></div>
+
+  <template id="windowTemplate">
+    <article class="window glass">
+      <header class="titlebar"><div class="app-mark"></div><div class="window-title"></div><div class="window-controls"><button data-action="min">—</button><button data-action="max">□</button><button data-action="close" class="close">×</button></div></header>
+      <div class="window-content"></div><div class="resize-handle"></div>
+    </article>
+  </template>
+  <script src="app.js"></script>
+</body>
+</html>

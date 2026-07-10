@@ -1,0 +1,10 @@
+{
+  "name": "GovencoOS 0.1",
+  "short_name": "GovencoOS",
+  "description": "Local-first browser desktop environment",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#070911",
+  "theme_color": "#090b12",
+  "icons": [{"src":"favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
