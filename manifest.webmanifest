@@ -1,1 +1,1 @@
-{"name":"GovencoOS","short_name":"GovencoOS","start_url":"./","display":"standalone","background_color":"#111111","theme_color":"#171514","icons":[{"src":"assets/govenco-icon.png","sizes":"1024x1024","type":"image/png"}]}
+{"name":"GovencoOS","short_name":"GovencoOS","start_url":"./","display":"standalone","background_color":"#111111","theme_color":"#171514","icons":[{"src":"assets/assets/govenco-icon.png","sizes":"1024x1024","type":"image/png"}]}

@@ -7,7 +7,6 @@
   <meta name="description" content="GovencoOS 0.1">
   <link rel="icon" href="assets/govenco-icon.png">
   <link rel="apple-touch-icon" href="assets/govenco-icon.png">
-  <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
   <title>GovencoOS 0.1</title>
 </head>
@@ -19,20 +18,19 @@
       <button id="brandButton" class="brand plain"><img src="assets/govenco-icon.png" alt=""><b>GovencoOS</b></button>
       <div class="topfill"></div>
       <button id="statusButton" class="status plain" aria-label="Quick settings">
-        <span data-icon="wifi"></span><span data-icon="volume"></span><span data-icon="battery"></span><b id="topClock">--:--</b>
+        <span data-icon="wifi"></span><span data-icon="volume"></span><b id="topClock">--:--</b>
       </button>
     </header>
     <section id="desktop" class="desktop">
       <div id="desktopIcons" class="desktop-icons"></div>
+      <div id="selectionBox" class="selection-box hidden"></div>
       <div id="windowLayer" class="window-layer"></div>
 
       <aside id="startMenu" class="start-menu glass hidden">
-        <div class="start-head"><img src="assets/govenco-icon.png" alt=""><b id="profileName">govenco</b><button id="startCollapse" class="icon-button" data-icon="chevron-down"></button></div>
-        <div class="start-content">
-          <nav id="startApps" class="start-apps"></nav>
-          <section><b class="section-label">Pinned</b><div id="pinnedApps" class="pinned"></div><b class="section-label recent-title">Recent</b><div id="recentFiles" class="recent"></div></section>
-        </div>
-        <label class="menu-search"><span data-icon="search"></span><input id="appSearch" placeholder="Search..."></label>
+        <div class="start-head"><img src="assets/govenco-icon.png" alt=""><b id="profileName">govenco</b></div>
+        <label class="menu-search"><span data-icon="search"></span><input id="appSearch" placeholder="Search apps..."></label>
+        <nav id="startApps" class="start-apps compact-search-results"></nav>
+        <div id="pinnedApps" hidden></div><div id="recentFiles" hidden></div>
         <footer><button id="powerButton" class="menu-power"><span data-icon="power"></span>Power</button></footer>
       </aside>
 
@@ -47,23 +45,27 @@
         <label class="slider-row"><span data-icon="sun"></span><input id="brightness" type="range" min="55" max="115" value="100"></label>
       </aside>
 
+
+      <section id="searchPalette" class="search-palette hidden">
+        <div class="search-palette-card glass">
+          <header><span data-icon="search"></span><input id="globalSearchInput" placeholder="Search applications..."><button id="searchPaletteClose" aria-label="Close">×</button></header>
+          <div id="globalSearchResults" class="global-search-results"></div>
+        </div>
+      </section>
       <div id="contextMenu" class="context-menu glass hidden"></div>
       <div id="toasts" class="toasts"></div>
-      <section id="desktopWidgets" class="desktop-widgets">
+      <section id="desktopWidgets" class="desktop-widgets desktop-movable" data-widget="stats">
         <article class="clock-widget glass"><div><b id="widgetClock">--:--</b><small id="widgetDate"></small></div><div class="stats"><span><i>CPU</i><b id="cpuStat">12%</b></span><span><i>RAM</i><b id="ramStat">38%</b></span><span><i>Disk</i><b id="diskStat">34%</b></span></div></article>
       </section>
 
-      <footer class="dock glass">
-        <button id="startButton" class="dock-app logo"><img src="assets/govenco-icon.png" alt="Start"></button>
-        <div id="taskApps" class="dock-apps"></div>
-      </footer>
-      <article class="version-card glass"><img src="assets/govenco-icon.png" alt=""><div><b>GovencoOS 0.1</b><small>Light. Simple. Yours.</small></div></article>
+      <footer class="dock glass"><div id="taskApps" class="dock-apps"></div></footer>
     </section>
   </main>
 
   <section id="lockScreen" class="lock-screen hidden"><img src="assets/govenco-icon.png" alt=""><b id="lockClock">--:--</b><span id="lockDate"></span><button id="unlockButton">Unlock</button></section>
-  <template id="windowTemplate"><article class="window glass"><header class="titlebar"><div class="traffic"><button data-act="close" aria-label="Close"></button><button data-act="min" aria-label="Minimize"></button><button data-act="max" aria-label="Maximize"></button></div><b class="window-title"></b><div class="title-actions"></div></header><div class="window-body"></div><button class="resize" aria-label="Resize"></button></article></template>
+  <template id="windowTemplate"><article class="window glass"><header class="titlebar"><div class="traffic"><button data-act="close" aria-label="Close"></button><button data-act="min" aria-label="Minimize"></button><button data-act="max" aria-label="Maximize"></button></div><b class="window-title"></b><div class="title-actions"></div></header><div class="window-body"></div><i class="resize-handle n" data-resize="n"></i><i class="resize-handle s" data-resize="s"></i><i class="resize-handle e" data-resize="e"></i><i class="resize-handle w" data-resize="w"></i><i class="resize-handle ne" data-resize="ne"></i><i class="resize-handle nw" data-resize="nw"></i><i class="resize-handle se" data-resize="se"></i><i class="resize-handle sw" data-resize="sw"></i></article></template>
   <input id="systemFilePicker" type="file" multiple hidden>
+  <script>if(location.protocol!=="file:"){const m=document.createElement("link");m.rel="manifest";m.href="manifest.webmanifest";document.head.append(m)}</script>
   <script src="app.js"></script>
 </body>
 </html>
